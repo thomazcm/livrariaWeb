@@ -9,6 +9,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import livrariaWeb.bean.util.ForwardView;
+import livrariaWeb.bean.util.RedirectView;
+import livrariaWeb.bean.util.View;
 import livrariaWeb.dao.DAO;
 import livrariaWeb.model.Autor;
 import livrariaWeb.model.Livro;
@@ -21,15 +24,16 @@ public class LivroBean implements Serializable{
     private Livro livro = new Livro();
     private Integer autorId;
 
-    public void gravar() {
+    public View gravar() {
 
         if (livro.getAutores().isEmpty()) {
             FacesContext currentInstance = FacesContext.getCurrentInstance();
             currentInstance.addMessage("autor", new FacesMessage("O livro deve possuir pelo menos um autor."));
-            return;
+            return new ForwardView("livro");
         }
         new DAO<Livro>(Livro.class).adiciona(this.livro);
         this.livro = new Livro();
+        return new RedirectView("livro");
     }
 
     public void gravarAutor() {
@@ -45,9 +49,8 @@ public class LivroBean implements Serializable{
         }
     }
     
-    public String formAutor() {
-        System.out.println("chamando formAutor");
-        return "autor?faces-redirect=true";
+    public RedirectView formAutor() {
+        return new RedirectView("autor");
     }
 
     public Integer getAutorId() {
