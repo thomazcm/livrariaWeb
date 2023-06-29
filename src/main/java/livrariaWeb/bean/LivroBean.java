@@ -44,6 +44,11 @@ public class LivroBean implements Serializable{
             throw new ValidatorException(new FacesMessage("O ISBN deve começar com 1"));
         }
     }
+    
+    public String formAutor() {
+        System.out.println("chamando formAutor");
+        return "autor?faces-redirect=true";
+    }
 
     public Integer getAutorId() {
         return this.autorId;

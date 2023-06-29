@@ -42,7 +42,7 @@
         </fieldset>
         
         <br/>
-        <h:commandLink value="Cadastrar novo Autor" action="autor"/>
+        
 
         <fieldset>
             <legend>Dados do Autor:</legend>
@@ -54,6 +54,10 @@
             <h:commandButton value="Adicionar Autor" actionListener="#{livroBean.gravarAutor}">
                 <f:ajax execute="autor" render="tabelaAutores" />
             </h:commandButton>
+            
+            <br/>
+            <h:commandLink value="Cadastrar novo autor" action="#{livroBean.formAutor}" immediate="true"/>
+            
             <h:dataTable value="#{livroBean.autoresDoLivro}" var="autor" id="tabelaAutores">
                 <h:column>
                     <h:outputText value="#{autor.nome}" />
