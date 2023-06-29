@@ -51,7 +51,7 @@
                 <f:selectItems value="#{livroBean.autores}" var="autor" itemLabel="#{autor.nome}"
                     itemValue="#{autor.id}" />
             </h:selectOneMenu>
-            <h:commandButton value="Adicionar Autor" action="#{livroBean.gravarAutor}">
+            <h:commandButton value="Adicionar Autor" actionListener="#{livroBean.gravarAutor}">
                 <f:ajax execute="autor" render="tabelaAutores" />
             </h:commandButton>
             <h:dataTable value="#{livroBean.autoresDoLivro}" var="autor" id="tabelaAutores">
